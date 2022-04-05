@@ -19,6 +19,9 @@ class Counters extends Component {
             key={counter.id}
             counter={counter}
             onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
+            onReset={this.handleReset}
           />
           // <Counter key={counter.id} value={counter.value} id={counter.id} />
         ))}
@@ -29,10 +32,22 @@ class Counters extends Component {
   handleDelete = (counterID) => {
     // console.log('button clicked', counterID);
     let counters = this.state.counters.filter(
-      counter => counter.id !== counterID
+      (counter) => counter.id !== counterID
     );
     this.setState({ counters: counters });
     return counters;
+  };
+
+  handleIncrement = (counter) => {
+    console.log('counter incremented')
+  };
+
+  handleDecrement = (counter) => {
+    console.log('counter decremented')
+  };
+
+  handleReset = (counter) => {
+    console.log('counter reset')
   };
 }
 

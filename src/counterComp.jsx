@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-  state = {
-    value: this.props.counter.value,
-  };
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     return (
       <React.Fragment>
         <span className={this.handleBadge()}>{this.formatCount()}</span>
-        <button onClick={this.handleIncrement} className="btn btn-sm m-2">
+        <button onClick={() => this.props.onIncrement(this.props.counter)} className="btn btn-sm m-2">
           Increment
         </button>
-        <button onClick={this.handleDecrement} className="btn btn-sm m-2">
+        <button onClick={() => this.props.onDecrement(this.props.counter)} className="btn btn-sm m-2">
           Decrement
         </button>
         <button
@@ -27,22 +24,22 @@ class Counter extends Component {
   }
 
   formatCount = () => {
-    return this.state.value === 0 ? 'Zero' : this.state.value;
+    return this.props.counter.value === 0 ? 'Zero' : this.props.counter.value;
   };
 
   handleBadge = () => {
-    return this.state.value === 0
+    return this.props.counter.value === 0
       ? 'badge badge-warning'
       : 'badge badge-primary';
   };
 
   handleIncrement = () => {
-    return this.setState({ value: this.state.value + 1 });
+    return this.setState({ value: this.props.counter.value + 1 });
   };
 
   handleDecrement = () => {
-    if (this.state.value === 0) return 'disabled';
-    return this.setState({ value: this.state.value - 1 });
+    if (this.props.counter.value === 0) return 'disabled';
+    return this.setState({ value: this.props.counter.value - 1 });
   };
 }
 
