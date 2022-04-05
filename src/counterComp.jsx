@@ -6,10 +6,16 @@ class Counter extends Component {
     return (
       <React.Fragment>
         <span className={this.handleBadge()}>{this.formatCount()}</span>
-        <button onClick={() => this.props.onIncrement(this.props.counter)} className="btn btn-sm m-2">
+        <button
+          onClick={() => this.props.onIncrement(this.props.counter)}
+          className="btn btn-sm m-2"
+        >
           Increment
         </button>
-        <button onClick={() => this.props.onDecrement(this.props.counter)} className="btn btn-sm m-2">
+        <button
+          onClick={() => this.props.onDecrement(this.props.counter)}
+          className="btn btn-sm m-2"
+        >
           Decrement
         </button>
         <button
@@ -33,14 +39,14 @@ class Counter extends Component {
       : 'badge badge-primary';
   };
 
-  handleIncrement = () => {
+  /*   handleIncrement = () => {
     return this.setState({ value: this.props.counter.value + 1 });
-  };
+  }; */
 
-  handleDecrement = () => {
+/*   handleDecrement = () => {
     if (this.props.counter.value === 0) return 'disabled';
     return this.setState({ value: this.props.counter.value - 1 });
-  };
+  }; */
 }
 
 export default Counter;

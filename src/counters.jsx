@@ -14,7 +14,7 @@ class Counters extends Component {
   render() {
     return (
       <React.Fragment>
-        <button>Reset</button>
+        <button onClick={this.handleReset} className="btn btn-sm btn-danger m-2">Reset</button>
         <br />
         {this.state.counters.map((counter) => (
           <Counter
@@ -23,7 +23,6 @@ class Counters extends Component {
             onDelete={this.handleDelete}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
-            onReset={this.handleReset}
           />
           // <Counter key={counter.id} value={counter.value} id={counter.id} />
         ))}
@@ -41,15 +40,31 @@ class Counters extends Component {
   };
 
   handleIncrement = (counter) => {
-    console.log('counter incremented')
+    console.log('counter incremented', counter);
+    let counters = [...this.state.counters]
+    let index = counters.indexOf(counter)
+    counters[index] = {...counter}
+    counters[index].value++
+    this.setState({counters:counters})
   };
 
   handleDecrement = (counter) => {
-    console.log('counter decremented')
+    let counters = [...this.state.counters]
+    let index = counters.indexOf(counter)
+    counters[index] = {...counter}
+    if (counters[index].value === 0) return 'disabled'
+    counters[index].value--
+    this.setState({counters:counters})
   };
 
-  handleReset = (counter) => {
-    console.log('counter reset')
+  handleReset = () => {
+    console.log('counter reset');
+    let counters = this.state.counters.map(counter => {
+      counter.value = 0
+      return counter
+    })
+    this.setState({counters: counters})
+
   };
 }
 
